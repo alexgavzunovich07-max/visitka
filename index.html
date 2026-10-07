@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Электромонтаж — Сайт-визитка</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #f5a623;
+      --dark: #1a1a2e;
+      --darker: #16213e;
+      --light: #f4f4f4;
+      --text: #e0e0e0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "⚡";
+      position: absolute;
+      font-size: 20rem;
+      opacity: 0.04;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .hero .profession {
+      font-size: 1.4rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: #aaa;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(245, 166, 35, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      margin-left: 10px;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* Sections */
+    section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      color: #fff;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* About */
+    .about-card {
+      background: var(--darker);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .about-card p { margin-bottom: 1rem; font-size: 1.05rem; color: #ccc; }
+    .about-card p:last-child { margin-bottom: 0; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--darker);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .skill-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .skill-card h3 { color: var(--accent); margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .skill-card p { font-size: 0.95rem; color: #999; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .timeline-item { margin-bottom: 2rem; position: relative; }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2.5rem;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--dark);
+    }
+
+    .timeline-date { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+    .timeline-item h3 { color: #fff; margin: 0.3rem 0; font-size: 1.1rem; }
+    .timeline-item p { color: #999; font-size: 0.95rem; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--darker);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .contact-card:hover { transform: translateY(-5px); }
+
+    .contact-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .contact-card h3 { color: var(--accent); margin-bottom: 0.3rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+    .contact-card a, .contact-card p { color: #ccc; text-decoration: none; font-size: 1rem; }
+    .contact-card a:hover { color: var(--accent); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--darker);
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero .profession { font-size: 1.1rem; }
+      .btn { display: block; margin: 0 auto 1rem; max-width: 250px; }
+      .btn-outline { margin-left: auto; }
+      section { padding: 3rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Имя Фамилия</h1>
+      <p class="profession">ЭЛЕКТРОМОНТАЖНИК</p>
+      <p class="tagline">Начинающий специалист в области электромонтажа. Учусь, практикуюсь и набираюсь опыта, чтобы стать профессионалом своего дела.</p>
+      <a href="#about" class="btn">Обо мне</a>
+      <a href="#contact" class="btn btn-outline">Связаться</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">Обо мне</h2>
+    <div class="about-card">
+      <p>Здравствуйте! Я студент, обучающийся по специальности «Электромонтаж». Моя цель — стать квалифицированным электромонтажником и работать с электрическими системами любой сложности.</p>
+      <p>В процессе обучения осваиваю монтаж и подключение электропроводки, установку розеток, выключателей, распределительных щитов, а также изучаю правила электробезопасности и нормативную документацию.</p>
+      <p>Ищу возможности для практики и стажировки. Готов учиться у опытных наставников и братьься за реальные задачи.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title">Навыки</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🔌</div>
+        <h3>Монтаж проводки</h3>
+        <p>Скрытая и открытая прокладка кабеля, подключение розеток и выключателей</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <h3>Электрощиты</h3>
+        <p>Сборка и подключение распределительных щитов, установка автоматов</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📚</div>
+        <h3>Нормативы</h3>
+        <p>Знание ПУЭ, ГОСТов и правил электробезопасности при работе</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧭</div>
+        <h3>Инструменты</h3>
+        <p>Работа с мультиметром, индикаторами, перфоратором и специнструментом</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="education">
+    <h2 class="section-title">Образование и опыт</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="timeline-date">2026 — настоящее время</p>
+        <h3>Студент, специальность «Электромонтаж»</h3>
+        <p>Изучение теоретических основ электротехники, выполнение практических заданий по монтажу электрических сетей.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-date">2025 — 2026</p>
+        <h3>Практика на предприятии</h3>
+        <p>Помощь электромонтажникам в прокладке кабеля, установке оборудования и сборке щитов под руководством наставника.</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-date">2024</p>
+        <h3>Поступление в учебное заведение</h3>
+        <p>Выбор профессии электромонтажника — сфера, которая всегда востребована и даёт стабильную работу.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Контакты</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <h3>Телефон</h3>
+        <a href="tel:+70000000000">+7 (000) 000-00-00</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3>Email</h3>
+        <a href="mailto:email@example.com">email@example.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3>Telegram</h3>
+        <a href="https://t.me/username" target="_blank">@username</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Город</h3>
+        <p>Волгоград</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Имя Фамилия. Сайт-визитка электромонтажника.</p>
+    <p style="margin-top: 0.5rem;">Сделано с заботой о контактах и электробезопасности ⚡</p>
+  </footer>
+
+</body>
+</html>
